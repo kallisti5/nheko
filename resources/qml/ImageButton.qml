@@ -1,5 +1,5 @@
 import "./ui"
-import QtQuick 2.3
+import QtQuick 2.15
 import QtQuick.Controls 2.3
 
 AbstractButton {
@@ -23,11 +23,9 @@ AbstractButton {
         source: image != "" ? ("image://colorimage/" + image + "?" + ((button.hovered && changeColorOnHover) ? highlightColor : buttonTextColor)) : ""
     }
 
-    MouseArea {
+    HoverHandler {
         id: mouseArea
 
-        anchors.fill: parent
-        onPressed: mouse.accepted = false
         cursorShape: Qt.PointingHandCursor
     }
 

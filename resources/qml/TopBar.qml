@@ -1,4 +1,4 @@
-import QtQuick 2.9
+import QtQuick 2.15
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.2
 import im.nheko 1.0
@@ -13,11 +13,6 @@ Rectangle {
     z: 3
     color: colors.window
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: TimelineManager.openRoomSettings()
-    }
-
     GridLayout {
         //Layout.margins: 8
 
@@ -27,6 +22,10 @@ Rectangle {
         anchors.right: parent.right
         anchors.margins: 8
         anchors.verticalCenter: parent.verticalCenter
+
+        TapHandler {
+            onTapped: TimelineManager.openRoomSettings()
+        }
 
         ImageButton {
             id: backToRoomsButton
@@ -41,7 +40,6 @@ Rectangle {
             image: ":/icons/icons/ui/angle-pointing-to-left.png"
             ToolTip.visible: hovered
             ToolTip.text: qsTr("Back to room list")
-            onClicked: TimelineManager.backToRooms()
         }
 
         Avatar {
@@ -65,12 +63,6 @@ Rectangle {
             text: room ? room.roomName : qsTr("No room selected")
             maximumLineCount: 1
             elide: Text.ElideRight
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: TimelineManager.openRoomSettings()
-            }
-
         }
 
         MatrixText {

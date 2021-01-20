@@ -1,6 +1,6 @@
 import "./delegates"
 import "./emoji"
-import QtQuick 2.6
+import QtQuick 2.15
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.2
@@ -12,27 +12,26 @@ Item {
     height: row.height
 
     Rectangle {
-        color: (Settings.messageHoverHighlight && hoverHandler.containsMouse) ? colors.alternateBase : "transparent"
+        visible: hoverHandler.hovered
+        color: colors.alternateBase
         anchors.fill: row
     }
 
-    MouseArea {
+    HoverHandler {
         id: hoverHandler
 
-        anchors.fill: parent
-        propagateComposedEvents: true
-        preventStealing: false
-        hoverEnabled: true
-        acceptedButtons: Qt.AllButtons
-        onClicked: {
-            if (mouse.button === Qt.RightButton)
-                messageContextMenu.show(model.id, model.type, model.isEncrypted, row);
-            else
-                event.accepted = false;
-        }
-        onPressAndHold: {
-            messageContextMenu.show(model.id, model.type, model.isEncrypted, row, mapToItem(timelineRoot, mouse.x, mouse.y));
-        }
+        enabled: Settings.messageHoverHighlight
+    }
+
+    TapHandler {
+        acceptedButtons: Qt.RightButton
+        acceptedDevices: PointerDevice.GenericPointer | PointerDevice.Cursor
+        onTapped: messageContextMenu.show(model.id, model.type, model.isEncrypted, row)
+    }
+
+    TapHandler {
+        acceptedDevices: PointerDevice.Finger | PointerDevice.Pen
+        onLongPressed: messageContextMenu.show(model.id, model.type, model.isEncrypted, row)
     }
 
     RowLayout {
@@ -132,15 +131,11 @@ Item {
             text: model.timestamp.toLocaleTimeString("HH:mm")
             width: Math.max(implicitWidth, text.length * fontMetrics.maximumCharacterWidth)
             color: inactiveColors.text
-            ToolTip.visible: ma.containsMouse
+            ToolTip.visible: ma.hovered
             ToolTip.text: Qt.formatDateTime(model.timestamp, Qt.DefaultLocaleLongDate)
 
-            MouseArea {
+            HoverHandler {
                 id: ma
-
-                anchors.fill: parent
-                hoverEnabled: true
-                propagateComposedEvents: true
             }
 
         }

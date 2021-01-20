@@ -3,7 +3,7 @@ import "./device-verification"
 import "./emoji"
 import "./voip"
 import QtGraphicalEffects 1.0
-import QtQuick 2.9
+import QtQuick 2.15
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.2

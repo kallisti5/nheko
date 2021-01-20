@@ -1,5 +1,5 @@
 import QtMultimedia 5.6
-import QtQuick 2.6
+import QtQuick 2.15
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.2
 import im.nheko 1.0
@@ -140,9 +140,8 @@ Rectangle {
                     fillMode: Image.Pad
                 }
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
+                TapHandler {
+                    onTapped: {
                         switch (button.state) {
                         case "":
                             TimelineManager.timeline.cacheMedia(model.data.id);
@@ -159,6 +158,9 @@ Rectangle {
                             break;
                         }
                     }
+                }
+
+                HoverHandler {
                     cursorShape: Qt.PointingHandCursor
                 }
 

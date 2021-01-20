@@ -1,4 +1,4 @@
-import QtQuick 2.6
+import QtQuick 2.15
 import im.nheko 1.0
 
 Item {

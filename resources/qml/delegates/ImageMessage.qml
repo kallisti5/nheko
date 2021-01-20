@@ -1,4 +1,4 @@
-import QtQuick 2.6
+import QtQuick 2.15
 import im.nheko 1.0
 
 Item {
@@ -32,20 +32,20 @@ Item {
         smooth: true
         mipmap: true
 
-        MouseArea {
+        HoverHandler {
             id: mouseArea
+        }
 
+        TapHandler {
             enabled: model.data.type == MtxEvent.ImageMessage && img.status == Image.Ready
-            hoverEnabled: true
-            anchors.fill: parent
-            onClicked: TimelineManager.openImageOverlay(model.data.url, model.data.id)
+            onTapped: TimelineManager.openImageOverlay(model.data.url, model.data.id)
         }
 
         Item {
             id: overlay
 
             anchors.fill: parent
-            visible: mouseArea.containsMouse
+            visible: mouseArea.hovered
 
             Rectangle {
                 id: container

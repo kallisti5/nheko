@@ -1,6 +1,6 @@
 import "./delegates"
 import QtGraphicalEffects 1.0
-import QtQuick 2.9
+import QtQuick 2.15
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.2
@@ -116,12 +116,12 @@ ListView {
                     color: TimelineManager.userColor(modelData ? modelData.userId : "", colors.window)
                     textFormat: Text.RichText
 
-                    MouseArea {
-                        anchors.fill: parent
-                        Layout.alignment: Qt.AlignHCenter
-                        onClicked: chat.model.openUserProfile(modelData.userId)
+                    TapHandler {
+                        onTapped: chat.model.openUserProfile(modelData.userId)
+                    }
+
+                    HoverHandler {
                         cursorShape: Qt.PointingHandCursor
-                        propagateComposedEvents: true
                     }
 
                 }

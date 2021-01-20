@@ -1,5 +1,5 @@
 import QtGraphicalEffects 1.0
-import QtQuick 2.10
+import QtQuick 2.15
 import QtQuick.Controls 2.3
 
 Item {
@@ -132,6 +132,13 @@ Item {
                 ripple.centerY = height / 2;
             }
             ripple.start();
+        }
+
+        function onTapped(p) {
+            ripple.centerX = p.position.x;
+            ripple.centerY = p.position.y;
+            ripple.start();
+            ripple.stop();
         }
 
         function onReleased() {

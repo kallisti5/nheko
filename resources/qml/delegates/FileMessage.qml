@@ -1,4 +1,4 @@
-import QtQuick 2.6
+import QtQuick 2.15
 import QtQuick.Layouts 1.2
 import im.nheko 1.0
 
@@ -29,9 +29,11 @@ Item {
                 fillMode: Image.Pad
             }
 
-            MouseArea {
-                anchors.fill: parent
-                onClicked: TimelineManager.timeline.saveMedia(model.data.id)
+            TapHandler {
+                onTapped: TimelineManager.timeline.saveMedia(model.data.id)
+            }
+
+            HoverHandler {
                 cursorShape: Qt.PointingHandCursor
             }
 
