@@ -116,9 +116,7 @@ brew install --cask nheko
 
 ### Build Requirements
 
-- Qt5 (5.10 or greater). Qt 5.7 adds support for color font rendering with
-  Freetype, which is essential to properly support emoji, 5.8 adds some features
-  to make interopability with Qml easier, 5.10 makes sliders actually visible with different palettes.
+- Qt5 (5.15 or greater).
 - CMake 3.15 or greater. (Lower version may work, but may break boost linking)
 - [mtxclient](https://github.com/Nheko-Reborn/mtxclient)
 - [LMDB](https://symas.com/lightning-memory-mapped-database/)
@@ -186,7 +184,7 @@ sudo pacman -S qt5-base \
 ##### Gentoo Linux
 
 ```bash
-sudo emerge -a ">=dev-qt/qtgui-5.10.0" media-libs/fontconfig dev-libs/qtkeychain
+sudo emerge -a ">=dev-qt/qtgui-5.15.0" media-libs/fontconfig dev-libs/qtkeychain
 ```
 
 ##### Ubuntu 20.04
@@ -238,7 +236,7 @@ brew install qt5 lmdb cmake llvm spdlog boost cmark libolm qtkeychain
 (for the CMake integration) workloads.
 
 2. Download the latest Qt for windows installer and install it somewhere.
-Make sure to install the `MSVC 2017 64-bit` toolset for at least Qt 5.10
+Make sure to install the `MSVC 2017 64-bit` toolset for at least Qt 5.15
 (lower versions does not support VS2017).
 
 3. If you don't have openssl installed, you will need to install perl to build it (i.e. Strawberry Perl).
@@ -289,7 +287,7 @@ You need to fill out the paths for the `Qt5_DIR`.
 The Qt5 dir should point to the `lib\cmake\Qt5` dir.
 
 Examples for the paths are:
- - `C:\\Qt\\5.10.1\\msvc2017_64\\lib\\cmake\\Qt5`
+ - `C:\\Qt\\5.15.2\\msvc2017_64\\lib\\cmake\\Qt5`
 
 You should also enable hunter by setting `HUNTER_ENABLED` to `ON` and `BUILD_SHARED_LIBS` to `OFF`.
 

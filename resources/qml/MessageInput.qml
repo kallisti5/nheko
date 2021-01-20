@@ -123,14 +123,7 @@ Rectangle {
                 text: "asfkajsdf"
                 selectByMouse: true
                 placeholderText: qsTr("Write a message...")
-                //placeholderTextColor: colors.buttonText
-                // only set the anchors on Qt 5.12 or higher
-                // see https://doc.qt.io/qt-5/qml-qtquick-controls2-popup.html#anchors.centerIn-prop
-                Component.onCompleted: {
-                    if (placeholderTextColor !== undefined)
-                        placeholderTextColor = colors.buttonText;
-
-                }
+                placeholderTextColor: colors.buttonText
                 color: colors.text
                 width: textInput.width
                 wrapMode: TextEdit.Wrap
